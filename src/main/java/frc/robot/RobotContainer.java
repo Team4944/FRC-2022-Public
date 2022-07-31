@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.DriveForward;
+import frc.robot.commands.TestSequencial;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 
@@ -78,7 +80,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new InstantCommand();
+    return new TestSequencial(m_drivetrainSubsystem);
   }
 
   private static double deadband(double value, double deadband) {
