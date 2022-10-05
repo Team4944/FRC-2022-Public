@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -14,15 +16,23 @@ public class TestSequencial extends SequentialCommandGroup {
   /** Creates a new TestSequencial. */
   DrivetrainSubsystem drivetrainSubsystem;
   DriveForward DriveForward1, DriveForward2, DriveForward3, DriveForward4;
+  Shoot shoot1, shoot2;
+  IntakeOn intakeOn;
+  IntakeOff intakeOff;
+  LowerBall lowerBall;
+  DoubleSupplier e;
   public TestSequencial(DrivetrainSubsystem drivetrainSubsystem) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    DriveForward1 = new DriveForward(drivetrainSubsystem, 1.0, 0.0, 0.0);
-    DriveForward2 = new DriveForward(drivetrainSubsystem, 0.0, 1.0, 0.0);
-    DriveForward3 = new DriveForward(drivetrainSubsystem, 0.0, -1.0, 0.0);
-    DriveForward4 = new DriveForward(drivetrainSubsystem, -1.0, 0.0, 0.0);
+    DriveForward1 = new DriveForward(drivetrainSubsystem, 4.0, 0.0, 0.0);
+    DriveForward2 = new DriveForward(drivetrainSubsystem, -6.0, 0.0, 0.0);
+    shoot1 = new Shoot();
+    shoot2 = new Shoot();
+    intakeOn = new IntakeOn();
+    intakeOff = new IntakeOff();
+    lowerBall = new LowerBall();
     this.drivetrainSubsystem = drivetrainSubsystem;
     drivetrainSubsystem.zeroGyroscope();
-    addCommands(DriveForward1, DriveForward2, DriveForward4, DriveForward3);
+    addCommands(shoot1, intakeOn, DriveForward1, DriveForward2, intakeOff, lowerBall, shoot2);
   }
 }
